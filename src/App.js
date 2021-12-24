@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Map from './components/maps/Map';
 
 const App = () => {
-
   const [maps, setMaps] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3500/maps')
+    fetch('https://maps-airtable.herokuapp.com/maps')
       .then(res => res.json())
       .then(res => {
         Object.keys(res).forEach((key) => {
@@ -17,12 +16,9 @@ const App = () => {
                delete res[key].fields[field]
             }
           });
-
        });
-
         setMaps(res);
       });
-      
     }, []);
 
   const mapList = maps.map(map => (
